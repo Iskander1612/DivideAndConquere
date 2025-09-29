@@ -19,7 +19,6 @@ public class MergeSortTest {
             MergeSort.sort(a, 32, m);
             assertArrayEquals(b, a);
 
-
             int bound = (int)Math.ceil(2 * (Math.log(Math.max(1,n)) / Math.log(2.0))) + 4;
             assertTrue(m.maxDepth <= bound, "depth too large: " + m.maxDepth + ", n=" + n);
         }

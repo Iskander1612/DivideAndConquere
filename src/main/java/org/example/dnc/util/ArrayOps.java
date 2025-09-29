@@ -1,14 +1,11 @@
 package org.example.dnc.util;
 
-
 import org.example.dnc.metrics.Metrics;
 import java.util.Random;
 
 
 public final class ArrayOps {
     private ArrayOps() {}
-
-
     public static void swap(int[] a, int i, int j, Metrics m) {
         if (i == j) return;
         int t = a[i]; a[i] = a[j]; a[j] = t;
@@ -54,4 +51,5 @@ public final class ArrayOps {
         for (int i = 0; i < n; i++) a[i] = n - i;
         return a;
     }
+
 }
