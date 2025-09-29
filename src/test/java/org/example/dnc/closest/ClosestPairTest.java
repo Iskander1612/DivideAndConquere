@@ -1,19 +1,13 @@
 package org.example.dnc.closest;
 
-
 import org.example.dnc.geom.Point2D;
 import org.example.dnc.metrics.Metrics;
 import org.junit.jupiter.api.Test;
-
-
 import java.util.Random;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ClosestPairTest {
-
 
     @Test
     void bruteForceCheckSmallN() {
@@ -28,7 +22,6 @@ public class ClosestPairTest {
             assertTrue(m.maxDepth <= Math.ceil(2 * (Math.log(Math.max(2,n)) / Math.log(2.0))) + 8);
         }
     }
-
 
     private static double brute(Point2D[] a) {
         double best = Double.POSITIVE_INFINITY;
