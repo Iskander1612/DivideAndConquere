@@ -1,15 +1,10 @@
 package org.example.dnc.select;
 
-
 import org.example.dnc.metrics.Metrics;
 import org.example.dnc.util.ArrayOps;
 import org.junit.jupiter.api.Test;
-
-
 import java.util.Arrays;
 import java.util.Random;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -46,12 +41,10 @@ public class SelectTest {
         assertEquals(5, val);
     }
 
-
     @Test
     void smallEdgeCases() {
         int[] a = {9};
         assertEquals(9, Select.select(a, 0, 5, new Metrics()));
-
 
         int[] b = {2,1};
         assertEquals(1, Select.select(b, 0, 5, new Metrics()));
