@@ -8,7 +8,6 @@ import java.util.*;
 public final class ClosestPair {
     private ClosestPair() {}
 
-
     public static double closestDist2(Point2D[] pts, Metrics m) {
         if (pts == null || pts.length < 2) return Double.POSITIVE_INFINITY;
         Point2D[] px = pts.clone();
@@ -28,7 +27,6 @@ public final class ClosestPair {
                     if (m != null) m.incCmp();
                     best = Math.min(best, Point2D.dist2(px[i], px[j]));
                 }
-
             Arrays.sort(px, lo, hi, Comparator.comparingDouble(Point2D::y));
             return best;
         }
@@ -44,11 +42,11 @@ public final class ClosestPair {
             double x = p.x();
             if (x < midX || (x == midX && indexOf(px, lo, mid, p) >= 0)) leftY.add(p); else rightY.add(p);
         }
+
         double dl = solve(px, leftY.toArray(Point2D[]::new), lo, mid, m);
         double dr = solve(px, rightY.toArray(Point2D[]::new), mid, hi, m);
         if (m != null) m.popDepth();
         double d = Math.min(dl, dr);
-
 
         List<Point2D> strip = new ArrayList<>();
         for (Point2D p : py) {
@@ -68,7 +66,6 @@ public final class ClosestPair {
         }
         return d;
     }
-
 
     private static int indexOf(Point2D[] px, int lo, int hi, Point2D p) {
         for (int i = lo; i < hi; i++) if (px[i] == p) return i;
