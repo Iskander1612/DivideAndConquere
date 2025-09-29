@@ -1,30 +1,24 @@
 Divide and Conquer Assignment
-Learning Goals
+Learning Goals: 
 
 Implement classic divide-and-conquer algorithms with safe recursion patterns
-
 Analyse running-time recurrences using Master Theorem and Akra–Bazzi intuition
-
 Validate theory with experimental measurements (time, recursion depth, comparisons/allocations)
-
 Communicate results via a short report and clean Git history
 
 Algorithms Implemented
+
 1. MergeSort (D&C, Master Case 2)
-
 Linear merge with reusable buffer
-
 Small-n cut-off → Insertion Sort
 
-Recurrence (student-level):
+Recurrence:
 Split into 2 halves → 2T(n/2).
 Merge step → O(n).
 So: T(n) = 2T(n/2) + O(n) → Θ(n log n); recursion depth Θ(log n).
 
-2. QuickSort (robust)
-
+2. QuickSort
 Randomized pivot selection
-
 Recurse on smaller partition, iterate on larger (stack depth ≈ O(log n) expected)
 
 Recurrence:
@@ -32,34 +26,24 @@ Average: Θ(n log n); Worst: Θ(n²);
 With random pivot, expected depth ≤ 2·log₂ n + O(1).
 
 3. Deterministic Select (Median of Medians, MoM5)
-
 Group by 5; median of medians as pivot
-
 Recurse only on the needed side (prefer the smaller side)
 
-Recurrence: T(n) = T(n/5) + T(7n/10) + O(n) → Θ(n) (Akra–Bazzi intuition).
+Recurrence: T(n) = T(n/5) + T(7n/10) + O(n) → Θ(n).
 Linear time, but larger constants (can be slower than QuickSort for small n).
 
 4. Closest Pair of Points (2D)
-
 Sort by x, recursive split; strip check by y-order (classical 7–8 neighbor scan)
-
 We return squared distance (dist²) for stability
 
 Recurrence: T(n) = 2T(n/2) + O(n) → Θ(n log n); sorting dominates large n.
-
 Architecture Notes
-
 Depth tracking: QuickSort keeps expected recursion depth O(log n) by always recursing on the smaller side.
-
 Allocations: MergeSort uses a single reusable buffer across the whole call.
-
 Counters: All algorithms instrumented with counters (comparisons, swaps, allocations, maxDepth).
-
 CSV Writer: Appends metrics to metrics.csv for plotting.
 
-CLI (example):
-
+CLI:
 mvn -q -DskipTests=true package
 java -cp target/assignment-dnc-0.1.0.jar org.example.dnc.cli.Main \
 --algo mergesort --n 100000 --trials 3 --cutoff 32 --seed 42 --csv metrics.csv
@@ -70,10 +54,11 @@ Experimental Results
 Plots (paste screenshots)
 
 Time vs n — all four algorithms
-![Time vs n](out/time_vs_n.png)
+Images/ 52.18 
+
 
 Recursion depth vs n — MergeSort & QuickSort only
-![Depth vs n](out/depth_vs_n.png)
+Images/ 52.12
 
 Data collection tip:
 
@@ -87,7 +72,7 @@ done
 JMH Benchmark Results (Select vs Arrays.sort()[k])
 
 Expectation: MoM5 ≈ Θ(n) and faster than sort[k] for large enough n.
-Paste here: ![JMH: Select vs sort[k]](out/jmh_select_vs_sort.png)
+Images/ 29.39
 
 Discussion of Constant‑Factor Effects
 
@@ -99,25 +84,16 @@ Select: linear time but higher constants → can be slower than QuickSort on sma
 
 Closest Pair: sorting dominates for small n, asymptotics win as n grows
 
-Summary
 
+Summary:
 Theoretical recurrences align with measured asymptotics
-
 Minor constant‑factor mismatches (e.g., QuickSort often faster than Select on small n)
-
 Depth control worked as expected (QuickSort ≤ 2·log₂ n)
-
 Final implementation satisfies the assignment requirements
-
-GitHub Workflow
-
+GitHub Workflow:
 Branches
-
 main — stable releases (v0.1, v1.0)
-
 feature/mergesort, feature/quicksort, feature/select, feature/closest, feature/metrics, feature/cli, bench/jmh
-
 Commit storyline
-
 init, feat(metrics), feat(mergesort), feat(quicksort), refactor(util),
 feat(select), feat(closest), feat(cli), bench(jmh), docs(report), fix, release:v1.0
