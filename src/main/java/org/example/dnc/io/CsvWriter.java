@@ -1,6 +1,5 @@
 package org.example.dnc.io;
 
-
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Objects;
@@ -9,9 +8,7 @@ import java.util.Objects;
 public final class CsvWriter {
     private final Path path;
 
-
     public CsvWriter(String file) { this.path = Paths.get(Objects.requireNonNull(file)); }
-
 
     public void headerIfNew() throws IOException {
         if (!Files.exists(path)) {
@@ -21,7 +18,6 @@ public final class CsvWriter {
                     StandardOpenOption.CREATE, StandardOpenOption.WRITE);
         }
     }
-
 
     public void appendRow(String row) throws IOException {
         Files.writeString(path, row + "\n", StandardOpenOption.CREATE, StandardOpenOption.APPEND);
