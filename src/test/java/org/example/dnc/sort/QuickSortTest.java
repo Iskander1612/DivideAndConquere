@@ -1,17 +1,13 @@
 package org.example.dnc.sort;
 
-
 import org.example.dnc.metrics.Metrics;
 import org.example.dnc.util.ArrayOps;
 import org.junit.jupiter.api.Test;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 
 
 public class QuickSortTest {
-
 
     @Test
     void randomCorrectnessAndDepthBound() {
@@ -41,7 +37,6 @@ public class QuickSortTest {
         Arrays.sort(b);
         assertArrayEquals(b, a);
     }
-
 
     @Test
     void adversarialSortedAscending() {

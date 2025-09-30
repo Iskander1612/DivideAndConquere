@@ -4,7 +4,6 @@ import org.example.dnc.metrics.Metrics;
 import org.example.dnc.util.ArrayOps;
 import java.util.Random;
 
-
 public final class QuickSort {
     private QuickSort() {}
 
@@ -33,9 +32,10 @@ public final class QuickSort {
                     i++;
                 }
             }
-            ArrayOps.swap(a, i, hi - 1, m);
-            int mid = i;
 
+            ArrayOps.swap(a, i, hi - 1, m);
+
+            int mid = i;
             int leftSize  = mid - lo;
             int rightSize = hi - (mid + 1);
             if (m != null) m.pushDepth();
@@ -43,7 +43,8 @@ public final class QuickSort {
                 if (leftSize > 1) quicksort(a, lo, mid, cutoff, rnd, m);
                 if (m != null) m.popDepth();
                 lo = mid + 1;
-            } else {
+            }
+            else {
                 if (rightSize > 1) quicksort(a, mid + 1, hi, cutoff, rnd, m);
                 if (m != null) m.popDepth();
                 hi = mid;

@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 @State(Scope.Thread)
 public class Bench {
-
     @Param({"10000","20000","40000"})
     int n;
 
@@ -30,7 +30,7 @@ public class Bench {
 
     @Benchmark
     public int mom5_select() {
-        int[] a = data.clone();            // не портим исходный массив
+        int[] a = data.clone();
         return Select.select(a, k, 24, null);
     }
 

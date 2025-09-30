@@ -5,8 +5,6 @@ public class Metrics {
     public long swaps;
     public long allocations;
     public int maxDepth;
-
-
     private int depth;
 
 
@@ -16,13 +14,17 @@ public class Metrics {
     }
 
 
-    public void addAlloc(long c) { allocations += Math.max(0, c); }
+    public void addAlloc(long c) {
+        allocations += Math.max(0, c);
+    }
 
+    public void incCmp() {
+        comparisons++;
+    }
 
-    public void incCmp() { comparisons++; }
-
-
-    public void incSwap() { swaps++; }
+    public void incSwap() {
+        swaps++;
+    }
 
 
     public void pushDepth() {
@@ -31,5 +33,7 @@ public class Metrics {
     }
 
 
-    public void popDepth() { depth--; }
+    public void popDepth() {
+        depth--;
+    }
 }
