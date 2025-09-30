@@ -15,7 +15,6 @@ import org.example.dnc.util.ArrayOps;
 
 public final class Main {
     public static void main(String[] args) throws Exception {
-//n 100000 trials 3 cutoff 32 seed 42
         String algo = val(args, "--algo", "mergesort");
         String dist = val(args, "--dist", "uniform");
         int n = Integer.parseInt(val(args, "--n", "100000"));
@@ -25,21 +24,16 @@ public final class Main {
         long seed = Long.parseLong(val(args, "--seed", "42"));
         String csv = val(args, "--csv", "metrics.csv");
 
-
         CsvWriter out = new CsvWriter(csv);
         out.headerIfNew();
 
-
         Metrics m = new Metrics();
-
 
         for (int t = 1; t <= trials; t++) {
             int[] a = ArrayOps.randomArray(n, seed + t);
             m.reset();
 
             long t0 = System.nanoTime();
-
-
 
             String resultForCsv = "";
 
@@ -49,19 +43,19 @@ public final class Main {
                 for (int i = 0; i < n; i++) pts[i] = new Point2D(rr.nextDouble(), rr.nextDouble());
                 double d2 = ClosestPair.closestDist2(pts, m);
                 resultForCsv = Double.toString(d2);
-
-            } else if ("select".equalsIgnoreCase(algo)) {
+            }
+            else if ("select".equalsIgnoreCase(algo)) {
                 int kk = Math.min(Math.max(0, k), n - 1);
                 int ans = Select.select(a, kk, cutoff, m);
                 resultForCsv = Integer.toString(ans);
-
-            } else if ("quicksort".equalsIgnoreCase(algo)) {
+            }
+            else if ("quicksort".equalsIgnoreCase(algo)) {
                 QuickSort.sort(a, cutoff, seed + t, m);
-
-            } else if ("mergesort".equalsIgnoreCase(algo)) {
+            }
+            else if ("mergesort".equalsIgnoreCase(algo)) {
                 MergeSort.sort(a, cutoff, m);
-
-            } else {
+            }
+            else {
                 throw new IllegalArgumentException("Unsupported algo: " + algo);
             }
 
@@ -71,8 +65,6 @@ public final class Main {
             if (!"select".equalsIgnoreCase(algo) && !"closest".equalsIgnoreCase(algo)) {
                 if (!ArrayOps.isSorted(a)) throw new AssertionError("Array not sorted");
             }
-
-
 
 
             String row = String.join(",",
