@@ -1,6 +1,5 @@
 package org.example.dnc.sort;
 
-
 import org.example.dnc.metrics.Metrics;
 import org.example.dnc.util.ArrayOps;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MergeSortTest {
-
 
     @Test
     void randomCorrectness() {
@@ -21,12 +19,10 @@ public class MergeSortTest {
             MergeSort.sort(a, 32, m);
             assertArrayEquals(b, a);
 
-
             int bound = (int)Math.ceil(2 * (Math.log(Math.max(1,n)) / Math.log(2.0))) + 4;
             assertTrue(m.maxDepth <= bound, "depth too large: " + m.maxDepth + ", n=" + n);
         }
     }
-
 
     @Test
     void adversarialReversed() {
