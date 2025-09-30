@@ -10,6 +10,7 @@ public final class Select {
         if (k < 0 || k >= a.length) throw new IllegalArgumentException("k out of range");
         return selectRange(a, 0, a.length, k, cutoff, m);
     }
+
     private static int selectRange(int[] a, int lo, int hi, int k, int cutoff, Metrics m) {
         while (true) {
             int n = hi - lo;
@@ -17,6 +18,7 @@ public final class Select {
                 ArrayOps.insertionSort(a, lo, hi, m);
                 return a[lo + k];
             }
+
 
             int numGroups = 0;
             for (int start = lo; start < hi; start += 5) {
@@ -30,7 +32,8 @@ public final class Select {
                 numGroups++;
             }
 
-            int medOfMedsIdx = (numGroups - 1) / 2; // 0-based
+
+            int medOfMedsIdx = (numGroups - 1) / 2;
             int mom = selectRange(a, lo, lo + numGroups, medOfMedsIdx, cutoff, m);
 
 
@@ -41,6 +44,7 @@ public final class Select {
                 else if (cmp > 0) { ArrayOps.swap(a, i, gt--, m); }
                 else { i++; }
             }
+
 
             int leftSize = lt - lo;
             int midSize = i - lt;

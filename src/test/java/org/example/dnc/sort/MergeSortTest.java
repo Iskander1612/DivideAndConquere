@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MergeSortTest {
 
-
     @Test
     void randomCorrectness() {
         for (int n : new int[]{0,1,2,10,1000,10_000}) {
